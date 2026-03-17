@@ -98,9 +98,9 @@ export default function App() {
   };
 
   const services = [
-    { title: "Tư vấn đầu tư", desc: "Phân tích dòng tiền và tiềm năng tăng giá dài hạn." },
-    { title: "Quản lý tài sản", desc: "Tối ưu hóa lợi nhuận từ việc vận hành và cho thuê." },
-    { title: "Pháp lý chuyên sâu", desc: "Đảm bảo mọi giao dịch minh bạch và an toàn tuyệt đối." }
+    { title: "Tư vấn đầu tư", desc: "Phân tích dòng tiền và tiềm năng tăng giá dài hạn cho các dự án tiềm năng." },
+    { title: "Môi giới bất động sản", desc: "Kết nối người mua và người bán với các sản phẩm chất lượng, pháp lý minh bạch." },
+    { title: "Marketing Online", desc: "Giải pháp truyền thông chuyên nghiệp cho các dự án và sản phẩm bất động sản." }
   ];
 
   return (
@@ -113,9 +113,14 @@ export default function App() {
             <span className={`text-[10px] tracking-[0.3em] uppercase font-bold ${scrolled ? 'text-[#C5A059]' : 'text-[#C5A059]'}`}>Real Estate</span>
           </div>
           <div className="hidden md:flex gap-8 items-center">
-            {['Bộ sưu tập', 'Dịch vụ', 'Về tôi', 'Liên hệ'].map((item) => (
-              <a key={item} href={`#${item}`} className={`text-xs uppercase tracking-widest font-semibold hover:text-[#C5A059] transition-colors ${scrolled ? 'text-slate-600' : 'text-white/80'}`}>
-                {item}
+            {[
+              { label: 'Dự án đang bán', id: 'listings' },
+              { label: 'Dịch vụ', id: 'services' },
+              { label: 'Về tôi', id: 'about' },
+              { label: 'Liên hệ', id: 'contact' }
+            ].map((item) => (
+              <a key={item.id} href={`#${item.id}`} className={`text-xs uppercase tracking-widest font-semibold hover:text-[#C5A059] transition-colors ${scrolled ? 'text-slate-600' : 'text-white/80'}`}>
+                {item.label}
               </a>
             ))}
             <a href={contactInfo.zalo} className="bg-[#C5A059] text-white px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-[#B38F4D] transition-all shadow-lg shadow-[#C5A059]/20">
@@ -168,7 +173,7 @@ export default function App() {
       </section>
 
       {/* Profile Intro */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      <section id="about" className="py-24 px-6 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -238,12 +243,41 @@ export default function App() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-[#C5A059] text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Dịch vụ chuyên nghiệp</span>
+            <h2 className="font-serif text-4xl md:text-5xl mb-6">Giải pháp <span className="italic">Toàn diện</span></h2>
+            <p className="text-slate-500 max-w-2xl mx-auto">Chúng tôi cung cấp các dịch vụ chuyên sâu nhằm tối ưu hóa giá trị tài sản và mang lại lợi ích cao nhất cho khách hàng.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((s, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-[#FDFBF7] p-10 rounded-3xl border border-slate-100 hover:shadow-xl transition-all group"
+              >
+                <div className="w-14 h-14 bg-[#C5A059]/10 rounded-2xl flex items-center justify-center text-[#C5A059] mb-8 group-hover:bg-[#C5A059] group-hover:text-white transition-all">
+                  {i === 0 ? <Award className="w-7 h-7" /> : i === 1 ? <Home className="w-7 h-7" /> : <Globe className="w-7 h-7" />}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{s.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Listings */}
       <section id="listings" className="py-24 bg-[#1A1A1A] text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
-              <span className="text-[#C5A059] text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Bộ sưu tập</span>
+              <span className="text-[#C5A059] text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Dự án đang bán</span>
               <h2 className="font-serif text-4xl md:text-5xl">Bất động sản <span className="italic">Nổi bật</span></h2>
             </div>
             <a href="#" className="text-[#C5A059] font-bold uppercase text-xs tracking-widest border-b border-[#C5A059]/30 pb-2 hover:border-[#C5A059] transition-all">
