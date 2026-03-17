@@ -407,9 +407,14 @@ export default function App() {
                 <label className="text-[10px] uppercase tracking-widest font-bold text-slate-400">Lời nhắn</label>
                 <textarea rows={4} className="w-full bg-slate-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-[#C5A059] transition-all outline-none" placeholder="Tôi quan tâm đến..."></textarea>
               </div>
-              <button className="w-full bg-[#1A1A1A] text-white py-5 rounded-xl font-bold uppercase text-xs tracking-[0.2em] hover:bg-[#C5A059] transition-all shadow-xl shadow-slate-900/10">
+              <a 
+                href={contactInfo.zalo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#1A1A1A] text-white py-5 rounded-xl font-bold uppercase text-xs tracking-[0.2em] hover:bg-[#C5A059] transition-all shadow-xl shadow-slate-900/10 inline-block text-center"
+              >
                 Gửi yêu cầu ngay
-              </button>
+              </a>
             </form>
           </div>
         </div>
